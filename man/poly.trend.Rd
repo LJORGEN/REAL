@@ -10,6 +10,8 @@ poly.trend(data1)
 \item{x}{Appraisal value}
 
 \item{y}{Sales price}
+
+\item{df}{data.frame containing sales price and time}
 }
 \value{
 rate table and a plot of the time trend fit
