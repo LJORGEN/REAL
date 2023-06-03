@@ -330,6 +330,7 @@ REALsummary <- function( a,s,ul =1.7 ,ll =.3 ,year,df= FALSE){ #summarystats
 #' and the second being time i,e, months. Time must have a origin at 0.
 #' @param x Appraisal value
 #' @param y Sales price
+#' @param df data.frame containing sales price and time
 #' @return rate table and a plot of the time trend fit
 #' @examples
 #' x <- c(10000,12000,11000,44000,35000,38000,89000,94000,102000,120000,125000,132000
