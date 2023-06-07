@@ -217,17 +217,27 @@ PRB_Upper <- function (x,y){ #PRB_Upper
 #' returns a console output of all the appraisal calculations
 #' @param x Appraisal value
 #' @param y Sales price
+#' @param trim YES is default. Enables ratio trimming
+#' @param ul Upper limit for ratios. 1.7 is the default value
+#' @param ll Lower limit for ratios. .3 is the default value
+#' @param year If years are included, runs summary analysis broken up by years
+#' @param df Default is FALSE. Run data.frame
 #' @return summary results
 #' @examples
 #' x <- c(25500,57000,39000,90000,51000,93000,49500);
 #' y <- c(75000,150000,90000,180000,90000,150000,75000);
 #' real_sum <- REALsummary(x,y);
 #' @export
-REALsummary <- function( a,s,ul =1.7 ,ll =.3 ,year,df= FALSE){ #summarystats
+REALsummary <- function( a,s,trim = "YES",ul =1.7 ,ll =.3 ,year,df= FALSE){ #summarystats
   if(missing(year) ){
     col <- data.frame(a,s)
     col$ratio <- a/s
-    col <- subset(col, ratio > ll & ratio < ul)
+    if (trim == "YES") {
+      col <- subset(col, ratio > ll & ratio < ul)
+    } else if (trim == "NO") {
+      col <- col
+    }
+    #col <- subset(col, ratio > ll & ratio < ul)
     a <- col$a
     s<- col$s
     print(paste(' Sample size: ', NROW(a),
@@ -245,7 +255,12 @@ REALsummary <- function( a,s,ul =1.7 ,ll =.3 ,year,df= FALSE){ #summarystats
   else if( df == FALSE) {
     col <- data.frame(a,s,year)
     col$ratio <- a/s
-    col <- subset(col, ratio > ll & ratio < ul)
+    if (trim == "YES") {
+      col <- subset(col, ratio > ll & ratio < ul)
+    } else if (trim == "NO") {
+      col <- col
+    }
+    #col <- subset(col, ratio > ll & ratio < ul)
     a <- col$a
     s<- col$s
     year <- col$year
@@ -272,7 +287,12 @@ REALsummary <- function( a,s,ul =1.7 ,ll =.3 ,year,df= FALSE){ #summarystats
   else{
     col <- data.frame(a,s,year)
     col$ratio <- a/s
-    col <- subset(col, ratio > ll & ratio < ul)
+    if (trim == "YES") {
+      col <- subset(col, ratio > ll & ratio < ul)
+    } else if (trim == "NO") {
+      col <- col
+    }
+    #col <- subset(col, ratio > ll & ratio < ul)
     a <- col$a
     s<- col$s
     year <- col$year

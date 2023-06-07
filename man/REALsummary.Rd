@@ -4,9 +4,19 @@
 \alias{REALsummary}
 \title{REAL Function Summary}
 \usage{
-REALsummary(a, s, ul = 1.7, ll = 0.3, year, df = FALSE)
+REALsummary(a, s, trim = "YES", ul = 1.7, ll = 0.3, year, df = FALSE)
 }
 \arguments{
+\item{trim}{YES is default. Enables ratio trimming}
+
+\item{ul}{Upper limit for ratios. 1.7 is the default value}
+
+\item{ll}{Lower limit for ratios. .3 is the default value}
+
+\item{year}{If years are included, runs summary analysis broken up by years}
+
+\item{df}{Default is FALSE. Run data.frame}
+
 \item{x}{Appraisal value}
 
 \item{y}{Sales price}
