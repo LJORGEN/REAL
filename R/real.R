@@ -456,3 +456,13 @@ Data.Frame.Missing.Data <- function(dataf, Percent.Missing = -1){ #Weighted_Medi
 Constant.In.Data <- function(dataf){ #Weighted_Median
   return( colnames(dataf[, base::sapply(dataf, function(col) length(unique(col))) == 1])  )
 }
+
+#' ID.In.Data
+#'
+#' Finds columns in a data.frame that have no non-unique values (possible ID's)
+#' @param dataf data.framed
+#' @return Returns possible ID columns
+#' @export
+ID.In.Data <- function(dataf){ #Weighted_Median
+  return( colnames(dataf[, base::sapply(dataf, function(col) length(unique(col))) == nrow(dataf)])  )
+}
