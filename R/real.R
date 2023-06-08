@@ -427,4 +427,32 @@ poly.trend <- function(data1){ #function start
 
 } #function end
 
+#####Preprocessing functions####
 
+#' Data.Frame.Missing.Data
+#'
+#' This function accepts a data.frame and will return a data.frame
+#' with all the columns and the percent of missing data that can be found in that column
+#' @param dataf data.frame
+#' @param Percent_Missing An optional argument that will set a lower
+#' bound of what percentage of data needs to be missing in order for it to be returned
+#' @return Returns a data.frame containing missing value information
+#' @export
+Data.Frame.Missing.Data <- function(dataf, Percent.Missing = -1){ #Weighted_Median
+  missing_count <-sapply(dataf, function(y) sum(length(which(is.na(y)))))
+  missing_value_df <- data.frame(missing_count)
+  missing_value_df$percent_missing <- unname(colMeans(is.na(Mkt2.data)))*100
+
+  return( subset(missing_value_df, percent_missing > Percent.Missing) )
+
+}
+
+#' Constant.In.Data
+#'
+#' Finds columns in a data.frame that have only 1 unique value
+#' @param dataf data.framed
+#' @return Returns columns with only 1 unique value
+#' @export
+Constant.In.Data <- function(dataf){ #Weighted_Median
+  return( colnames(dataf[, base::sapply(dataf, function(col) length(unique(col))) == 1])  )
+}
