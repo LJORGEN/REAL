@@ -1,6 +1,12 @@
 # REAL
 Real Estate Apprasial Language
 
-Contains functions used for property apprasial analysis
+Contains functions used for property apprasial analysis.
 
 Currently includes COD, PRD, PRB, associated sub-functions, summary stats, and polynomial time trend fit
+as well as preprocessing functions for data cleanup.
+
+This is an R companion package to the github package 'Joshua-Data-Wizard/PyRealEstate'. The preprcossing functions
+orignate from the 'PyRealEstate' package.
+
+PyRealEstate: https://github.com/Joshua-Data-Wizard/PyRealEstate.git
