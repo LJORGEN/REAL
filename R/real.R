@@ -106,7 +106,7 @@ PRB <- function (x,y){ #prb
     ind <- log(value) / log(2)
     dep <- (asr -med) / med
     l<-lm(dep ~ ind)
-    if(summary(l)$coefficients[2,4] < .1 ){
+    if(summary(l)$coefficients[2,4] < .05 ){
       return(summary(l)$coefficients[2,1])
     }
     else{
@@ -139,7 +139,7 @@ PRB_Conclusion <- function (x,y){ #PRB_Conclusion
     ind <- log(value) / log(2)
     dep <- (asr -med) / med
     l<-lm(dep ~ ind)
-    if(summary(l)$coefficients[2,4] > .1  | (summary(l)$coefficients[2,4] < .1 & abs(summary(l)$coefficients[2,1]) < .05) ){
+    if(summary(l)$coefficients[2,4] > .05  | (summary(l)$coefficients[2,4] < .05 & abs(summary(l)$coefficients[2,1]) < .05) ){
       return('PASS')
     }
     else{
@@ -171,12 +171,13 @@ PRB_Lower <- function (x,y){ #PRB_Lower
     ind <- log(value) / log(2)
     dep <- (asr -med) / med
     l<-lm(dep ~ ind)
-    if(summary(l)$coefficients[2,4] < .1 ){
-      return(confint(l)[2,1])
-    }
-    else{
-      return(0)
-    }
+    #if(summary(l)$coefficients[2,4] < .05 ){
+    #  return(confint(l)[2,1])
+    #}
+    #else{
+    #  return(0)
+    #}
+    return(confint(l)[2,1])
   }
 }
 
@@ -203,12 +204,13 @@ PRB_Upper <- function (x,y){ #PRB_Upper
     ind <- log(value) / log(2)
     dep <- (asr -med) / med
     l<-lm(dep ~ ind)
-    if(summary(l)$coefficients[2,4] < .1 ){
-      return(confint(l)[2,2])
-    }
-    else{
-      return(0)
-    }
+    #if(summary(l)$coefficients[2,4] < .05 ){
+    #  return(confint(l)[2,2])
+    #}
+    #else{
+    #  return(0)
+    #}
+    return(confint(l)[2,2])
   }
 }
 
